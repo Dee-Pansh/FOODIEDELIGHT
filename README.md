@@ -3,6 +3,7 @@
 > The FOODIEDELIGHT Restaurant Management Module allows restaurant administrators to manage restaurants on the platform. This includes adding, modifying, deleting, and listing restaurants. The data is fetched asynchronously from a backend application via API calls, ensuring a seamless and responsive user experience.
 
 # Project Structure
+<pre>
 foodiedelight/
 ├── public/
 ├── src/
@@ -25,3 +26,4 @@ foodiedelight/
 ├── .gitignore
 ├── package.json
 └── README.md
+</pre>
