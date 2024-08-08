@@ -38,3 +38,32 @@ foodiedelight/
 ├── package.json
 └── README.md
 </pre>
+
+## Setup and Installation
+
+Follow these steps to set up the project locally:
+
+1. **Clone the Repository**:
+   - Clone the project from GitHub to your local machine using the following command:
+     ```bash
+     git clone https://github.com/yourusername/foodiedelight.git
+     ```
+
+2. **Navigate to the Project Directory**:
+   - Move into the project directory:
+     ```bash
+     cd foodiedelight
+     ```
+
+3. **Install Dependencies**:
+   - Install the required npm packages by running:
+     ```bash
+     npm install
+     ```
+
+4. **Start the Development Server**:
+   - Launch the development server with the following command:
+     ```bash
+     npm start
+     ```
+   - The application should now be running at `http://localhost:3000` in your web browser.
