@@ -14,7 +14,7 @@
 - **Responsiveness**: The application is designed to be responsive and works well on different screen sizes.
 
 ## API's CREATION
-- Api are created using express.js
+> ## Api are created using express.js and backend code also available inside backend folder
 
 ## API Links :
 
@@ -25,6 +25,24 @@
 - GET_RESTAURANT_BY_ID : "http://localhost:4000/restaurant"
 
 
+## Concepts Used 
+- Formik & Yup Packages for Field Validations 
+- Props
+- Component Resusability
+- Routing
+- State Management Hooks : useEffect, useState
+- Custom Hooks 
+- Async-Await 
+- Api Handlings
+- Customize Error Handlings
+- Responsiveness
+- Backend Code Creation using Mock Data
+- CRUD Operations on Data Structure
+- Modularity
+- Navigate Hook
+- Utils And Constants Handlings for Junit Testing
+- Making Code Ready for Production Build
+- Styling using TailwindCss
 
 # Project Structure
 <pre>
