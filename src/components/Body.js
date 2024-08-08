@@ -1,8 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Restaurants from './Restaurants';
 import RestaurantSignUp from './RestaurantSignUp';
 const Body = () => {
     const [btnClicked,setBtnClicked]=useState(false);
+    useEffect(()=>{
+  console.log("component rendered");
+    },[btnClicked]);
     return (
         <div className='flex flex-col mx-auto w-[75%] border border-black rounded-md px-5 py-8 my-12'>
             {
@@ -16,7 +19,7 @@ const Body = () => {
             </>
             :
             <>
-            <RestaurantSignUp />
+            <RestaurantSignUp btnClicked={btnClicked} setBtnClicked={setBtnClicked}/>
             </>
              }
         </div>

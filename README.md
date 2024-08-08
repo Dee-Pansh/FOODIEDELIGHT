@@ -1,6 +1,7 @@
 # Overview
 > The FOODIEDELIGHT Restaurant Management Module allows restaurant administrators to manage restaurants on the platform. This includes adding, modifying, deleting, and listing restaurants. The data is fetched asynchronously from a backend application via API calls, ensuring a seamless and responsive user experience.
 
+## Please find the screenshots for all the features inside Screenshots folder
 
 ## Features
 
@@ -11,6 +12,18 @@
 - **Data Validations**: Ensures that all necessary fields are filled with valid data.
 - **Exception Handling**: Handles errors gracefully, providing feedback to the user without disrupting the experience.
 - **Responsiveness**: The application is designed to be responsive and works well on different screen sizes.
+
+## API's CREATION
+- Api are created using express.js
+
+## API Links :
+
+- GET_ALL_RESTAURANTS : "http://localhost:4000"
+- POST_RESTAURANT : "http://localhost:4000/restaurants/post"
+- UPDATE_RESTAURANT : "http://localhost:4000/restaurants"
+- DELETE_RESTAURANT : "http://localhost:4000/restaurants"
+- GET_RESTAURANT_BY_ID : "http://localhost:4000/restaurant"
+
 
 
 # Project Structure
@@ -67,3 +80,4 @@ Follow these steps to set up the project locally:
      npm start
      ```
    - The application should now be running at `http://localhost:3000` in your web browser.
+

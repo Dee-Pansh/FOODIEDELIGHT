@@ -1,15 +1,33 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
-import { POST_RESTAURANT } from '../utils/constants';
-import { useNavigate } from 'react-router-dom';
+import { GET_RESTAURANT_BY_ID, UPDATE_RESTAURANT } from '../utils/constants';
+import { useNavigate, useParams } from 'react-router-dom';
 
 // List of cities in India for the select dropdown
 const cities = ["Delhi", "Mumbai", "Bangalore", "Chennai", "Kolkata", "Hyderabad", "Pune", "Ahmedabad", "Jaipur"];
 
-const RestaurantSignUp = ({btnClicked,setBtnClicked}) => {
-  const navigate=useNavigate();
+const EditRestaurant = () => {
+  const navigate = useNavigate();
+  const { id } = useParams();
+  const [resData, setResData] = useState(null); // Initialize with null
+  const [loading, setLoading] = useState(true); // Add loading state
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`${GET_RESTAURANT_BY_ID}/${id}`);
+        setResData(response.data);
+        setLoading(false); // Set loading to false after data is fetched
+      } catch (error) {
+        console.error('Error fetching restaurant data:', error);
+        setLoading(false); // Set loading to false even if there's an error
+      }
+    };
+    fetchData();
+  }, [id]);
+
   // Validation Schema using Yup
   const validationSchema = Yup.object({
     name: Yup.string()
@@ -37,32 +55,43 @@ const RestaurantSignUp = ({btnClicked,setBtnClicked}) => {
 
   // Function to handle form submission
   const handleSubmit = (values, { setSubmitting }) => {
-    // Simulate API call
-    axios.post(POST_RESTAURANT, values)
+    console.log("button clicked");
+    
+    axios.put(`${UPDATE_RESTAURANT}/${id}`, values) // Use PUT for updating
       .then(response => {
-        console.log('Restaurant registered:', response.data);
-        setBtnClicked(!btnClicked);
-        alert('Restaurant registered successfully!');
+        console.log('Restaurant updated:', response.data);
+        alert('Restaurant updated successfully!');
+        navigate(-1); // Navigate back after successful update
       })
       .catch(error => {
-        console.error('There was an error registering the restaurant:', error);
-        alert('Failed to register the restaurant.');
+        console.error('Error updating restaurant:', error);
+        alert('Failed to update the restaurant.');
       })
       .finally(() => {
         setSubmitting(false);
       });
   };
 
-  const handleClick=()=>{
-    alert("btn clicked");
-    navigate(-1);
+  const handleClick = () => {
+    navigate(-1); // Navigate back when button is clicked
+  };
+
+  if (loading) {
+    return <div>Loading...</div>; // Display loading state
   }
+
   return (
     <div className="max-w-md mx-auto mt-10">
-      <h2 className="text-2xl font-bold mb-6 text-center">Restaurant Sign Up</h2>
-
+      <h2 className="text-2xl font-bold mb-6 text-center">Restaurant Edit Form</h2>
       <Formik
-        initialValues={{ name: '', menu: '', category: '', city: '', address: '', phone: '' }}
+        initialValues={{ 
+          name: resData.name || '',
+          menu: resData.menu || '',
+          category: resData.category || '',
+          city: resData.city || '',
+          address: resData.address || '',
+          phone: resData.phone || ''
+        }}
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
@@ -156,17 +185,16 @@ const RestaurantSignUp = ({btnClicked,setBtnClicked}) => {
               <button
                 type="submit"
                 className="w-full bg-blue-500 text-white py-2 rounded mt-4 hover:bg-blue-600 transition"
-                disabled={isSubmitting}
               >
-                {isSubmitting ? 'Submitting...' : 'Sign Up'}
+                {isSubmitting ? 'Submitting...' : 'Update'}
               </button>
             </div>
           </Form>
         )}
       </Formik>
-      <button onClick={handleClick} className='text-red-500'>Click to go Back</button>
+      <button onClick={handleClick} className='text-red-500 mt-4'>Click to go Back</button>
     </div>
   );
 };
 
-export default RestaurantSignUp;
+export default EditRestaurant;
